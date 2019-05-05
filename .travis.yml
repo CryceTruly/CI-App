@@ -20,8 +20,7 @@ addons:
       - google-chrome-stable
 script:
   - npm install
-  - ng  test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
-  - ng  e2e -- --protractor-config=./e2e/protractor-ci.conf.js
+  - ng  test -- --code-coverage --watch=false --progress=false --browsers=ChromeHeadlessCI
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
