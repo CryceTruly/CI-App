@@ -1,13 +1,9 @@
-
 language: node_js
 node_js:
   - stable
 cache:
   directories:
   - node_modules
-
-
-
 env:
   global:
     -   CC_TEST_REPORTER_ID=cdd394528e88ef8a20099ae4313133f1f9437773b048387ae34fb0ac13f5e1d4
@@ -16,14 +12,12 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-
 addons:
   apt:
     sources:
       - google-chrome
     packages:
       - google-chrome-stable
-
 script:
   - npm install
   - npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
