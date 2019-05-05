@@ -5,7 +5,11 @@ node_js:
 cache:
   directories:
   - node_modules
-
+before_script:
+  - export CC_TEST_REPORTER_ID=cdd394528e88ef8a20099ae4313133f1f9437773b048387ae34fb0ac13f5e1d4
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 addons:
   apt:
@@ -18,3 +22,6 @@ script:
   - npm install
   - npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
   - npm run e2e -- --protractor-config=./e2e/protractor-ci.conf.js
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
