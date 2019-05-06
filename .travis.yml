@@ -19,8 +19,8 @@ addons:
     packages:
       - google-chrome-stable
 script:
-  - npm install
-  - ng  test -- --code-coverage --watch=false --progress=false --browsers=ChromeHeadlessCI
+  - yarn install
+  - yarn testci
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
