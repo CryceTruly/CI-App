@@ -26,6 +26,7 @@ script:
 after_script:
   - npm install -g codecov
   - codecov
-  - ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
+  - codeclimate < test/coverage/**/lcov.info
+  - ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json test/coverage/**/lcov.info
   - ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.js
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
