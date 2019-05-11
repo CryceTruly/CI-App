@@ -4,16 +4,6 @@ node_js:
 cache:
   directories:
     - node_modules
-env:
-  global:
-    - CC_TEST_REPORTER_ID=cdd394528e88ef8a20099ae4313133f1f9437773b048387ae34fb0ac13f5e1d4
-    - CODECOV_TOKEN=4f221960-7544-4391-bb4b-ea34fdc8761c
-before_script:
-  - export CC_TEST_REPORTER_ID=cdd394528e88ef8a20099ae4313133f1f9437773b048387ae34fb0ac13f5e1d4
-  - export CODECOV_TOKEN=4f221960-7544-4391-bb4b-ea34fdc8761c
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
 addons:
   apt:
     sources:
@@ -24,10 +14,5 @@ script:
   - yarn install
   - yarn testci
 after_script:
-  - npm install -g codecov
+  - yarn install -g codecov
   - codecov
-  - codeclimate < test/coverage/**/lcov.info
-  - ./cc-test-reporter before-build
-  - ./cc-test-reporter format-coverage --input-type string
-  - ./cc-test-reporter upload-coverage
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
